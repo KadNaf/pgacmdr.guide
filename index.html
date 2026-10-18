@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PGA-cmdr — population genetics, without the tool juggling</title>
+<meta name="description" content="PGA-cmdr is a free, open-source R/Shiny application for the analysis of codominant molecular marker data: F-statistics, diversity, linkage disequilibrium, null alleles and isolation by distance, all computed locally.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%233C6E58%22/><circle cx=%2210%22 cy=%2211%22 r=%222.6%22 fill=%22%23ECEAE0%22/><circle cx=%2222%22 cy=%2211%22 r=%222.6%22 fill=%22%23ECEAE0%22/><circle cx=%2216%22 cy=%2222%22 r=%222.6%22 fill=%22%23ECEAE0%22/><line x1=%2210%22 y1=%2211%22 x2=%2222%22 y2=%2211%22 stroke=%22%23ECEAE0%22 stroke-width=%221.4%22/><line x1=%2210%22 y1=%2211%22 x2=%2216%22 y2=%2222%22 stroke=%22%23ECEAE0%22 stroke-width=%221.4%22/><line x1=%2222%22 y1=%2211%22 x2=%2216%22 y2=%2222%22 stroke=%22%23ECEAE0%22 stroke-width=%221.4%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="#top" class="wordmark">PGA-cmdr</a>
+  <nav class="site-nav">
+    <a href="#workflow">Modules</a>
+    <a href="#methods">Methods</a>
+    <a href="#install">Install</a>
+    <a href="#cite">Cite</a>
+    <a href="https://github.com/KadNaf/PGA1" class="nav-source">Source</a>
+  </nav>
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-kicker">R package pgacmdr · in-app name PGA-commander V1</p>
+        <h1>A graphical home for population genetics, with nothing hidden in a script.</h1>
+        <p class="hero-lede">PGA-cmdr brings allele frequencies, F-statistics, genetic diversity, linkage disequilibrium, null-allele correction and isolation by distance into one Shiny interface. Set a few parameters, press Run, get your file back. Every computation happens on your own machine.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#install">Install PGA-cmdr</a>
+          <a class="btn btn-ghost" href="https://github.com/KadNaf/PGA1">View the source</a>
+        </div>
+      </div>
+      <div class="console" role="group" aria-label="Key facts">
+        <p class="console-line"><span class="console-k">modules</span><span class="console-v">10, Import Data through IBD</span></p>
+        <p class="console-line"><span class="console-k">markers</span><span class="console-v">allozymes · microsatellites · SNPs</span></p>
+        <p class="console-line"><span class="console-k">runs on</span><span class="console-v">your machine, nothing uploaded</span></p>
+        <p class="console-line"><span class="console-k">platforms</span><span class="console-v">Windows · macOS · Linux</span></p>
+        <p class="console-line"><span class="console-k">requires</span><span class="console-v">R &ge; 4.1.0</span></p>
+        <p class="console-line"><span class="console-k">file limit</span><span class="console-v">500 MB per import</span></p>
+        <p class="console-line"><span class="console-k">license</span><span class="console-v">MIT</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="band-inner">
+      <h2>One standardised dataset, ten modules built on it</h2>
+      <p>Most population-genetics work still means juggling several programs, each with its own input format and its own operating-system quirks. PGA-cmdr imports your file once into a single internal structure, and every module after that reads from the same place. Import your data in the first module and the other nine are ready to use, in the order you would normally reach for them.</p>
+    </div>
+  </section>
+
+  <section class="workflow" id="workflow">
+    <div class="workflow-inner">
+      <h2>The ten modules, in the order you'll run them</h2>
+      <ol class="pipeline">
+        <li>
+          <span class="step">1</span>
+          <div>
+            <h3>Import Data</h3>
+            <p>Read a CSV or TXT file, assign the population, marker and optional coordinate columns, and build the internal dataset every other module uses.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step">2</span>
+          <div>
+            <h3>Allele Freq</h3>
+            <p>Allele frequencies at every marker, in every population, with a global column pooling all of them.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step">3</span>
+          <div>
+            <h3>General Stats</h3>
+            <p>Point estimates of Ho, Hs, Ht and the Weir &amp; Cockerham F-statistics, plus optional standardised differentiation measures.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step">4</span>
+          <div>
+            <h3>Local Panmixia</h3>
+            <p>Tests random mating within each population (F<sub>IS</sub>), with bootstrap confidence intervals and a two-sided permutation test.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step">5</span>
+          <div>
+            <h3>Global Panmixia</h3>
+            <p>The same question for the whole dataset treated as one population (F<sub>IT</sub>).</p>
+          </div>
+        </li>
+        <li>
+          <span class="step">6</span>
+          <div>
+            <h3>Subdivision</h3>
+            <p>How different your populations are from each other (F<sub>ST</sub>), with a one-sided permutation test and a genotypic G-test run alongside it.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step">7</span>
+          <div>
+            <h3>Diversities</h3>
+            <p>Gene diversity within and across populations, with confidence intervals resampled over individuals, subsamples or loci.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step">8</span>
+          <div>
+            <h3>LD</h3>
+            <p>Pairwise linkage disequilibrium between markers, within each population and pooled, by permutation.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step">9</span>
+          <div>
+            <h3>Null Alleles</h3>
+            <p>EM-estimated null-allele frequencies, ENA-corrected F<sub>ST</sub>, and every pairwise chord distance between populations.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step">10</span>
+          <div>
+            <h3>IBD</h3>
+            <p>Isolation by distance: Rousset's regression and a four-statistic Mantel test against geodesic distance.</p>
+          </div>
+        </li>
+      </ol>
+      <p class="workflow-note">Every module ends the same way: one Run button, one download, no separate export step. Nothing is kept on screen; the downloaded file is the record of the run.</p>
+    </div>
+  </section>
+
+  <section class="band band-alt">
+    <div class="band-inner">
+      <h2>Built to replace a shelf of separate tools</h2>
+      <dl class="definitions">
+        <div>
+          <dt>Accessible</dt>
+          <dd>No programming required once installed. The application opens in your own browser and runs identically on Windows, macOS and Linux.</dd>
+        </div>
+        <div>
+          <dt>Unified</dt>
+          <dd>One input format for the core analyses instead of reformatting data for Fstat, FreeNA, Genepop and the rest in turn.</dd>
+        </div>
+        <div>
+          <dt>Transparent about its limits</dt>
+          <dd>Where a result is still under comparison against a reference implementation, the documentation says so rather than rounding the discrepancy away.</dd>
+        </div>
+        <div>
+          <dt>Fast at real scale</dt>
+          <dd>C++ compute kernels parallelised with OpenMP; a 10,000-permutation linkage-disequilibrium run that takes days in some older tools finishes in seconds.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="methods" id="methods">
+    <div class="methods-inner">
+      <h2>The statistics, and where they come from</h2>
+      <p>Every procedure in PGA-cmdr is a published method, cross-checked against an independent implementation where one exists. This is the index used throughout the application's own documentation.</p>
+      <ul class="ref-list">
+        <li><span class="ref-term">F-statistics F<sub>IS</sub>, F<sub>ST</sub>, F<sub>IT</sub></span><span class="ref-src">Weir &amp; Cockerham (1984)</span></li>
+        <li><span class="ref-term">Gene diversity H<sub>o</sub>, H<sub>s</sub>, H<sub>t</sub></span><span class="ref-src">Nei &amp; Chesser (1983)</span></li>
+        <li><span class="ref-term">Genotypic test of subdivision</span><span class="ref-src">Goudet, Raymond, De Meeûs &amp; Rousset (1996)</span></li>
+        <li><span class="ref-term">Null-allele frequency (EM algorithm)</span><span class="ref-src">Dempster, Laird &amp; Rubin (1977)</span></li>
+        <li><span class="ref-term">Null-allele correction of F<sub>ST</sub> and distances</span><span class="ref-src">Chapuis &amp; Estoup (2007)</span></li>
+        <li><span class="ref-term">Chord genetic distance</span><span class="ref-src">Cavalli-Sforza &amp; Edwards (1967)</span></li>
+        <li><span class="ref-term">Isolation-by-distance regression</span><span class="ref-src">Rousset (1997)</span></li>
+        <li><span class="ref-term">Geodesic distance between coordinates</span><span class="ref-src">Vincenty (1975)</span></li>
+        <li><span class="ref-term">Continuity-corrected permutation p-values</span><span class="ref-src">Phipson &amp; Smyth (2010)</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="install" id="install">
+    <div class="install-inner">
+      <h2>Install</h2>
+      <p>PGA-cmdr is a standard R package, installed directly from its source on GitHub.</p>
+      <pre class="terminal"><code>install.packages("remotes")
+remotes::install_github("KadNaf/PGA1")</code></pre>
+      <p>Then start it with one command:</p>
+      <pre class="terminal"><code>pgacmdr::run_app()</code></pre>
+      <p class="install-note">macOS only: install <strong>gfortran</strong> (from mac.r-project.org/tools) and <strong>libomp</strong> (<code>brew install libomp</code>) before the step above, since Apple's compiler doesn't ship OpenMP by default. Windows and Linux need no extra step.</p>
+      <p class="install-note">Deploying for a whole lab or a shared server? The repository includes a ready Dockerfile and a docker-compose file, so everyone gets the same environment without installing R themselves.</p>
+    </div>
+  </section>
+
+  <section class="band" id="cite">
+    <div class="band-inner cite-inner">
+      <h2>Citing PGA-cmdr</h2>
+      <p>The manuscript describing PGA-cmdr is in preparation and will be deposited on bioRxiv ahead of submission to <em>Peer Community In Mathematical &amp; Computational Biology</em>. Until a formal citation is available, please cite the GitHub repository and the version number you used.</p>
+      <p class="authors">Naffiou Kadiri, Vincent Manzanilla, Marie-Pierre Chapuis, Gora Diop, Thierry de Meeûs — Intertryp &amp; CBGP, Univ Montpellier, CIRAD, IRD, with Université Cheikh Anta Diop, Dakar.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <p class="wordmark small">PGA-cmdr</p>
+      <p>Open-source under the MIT license.</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/KadNaf/PGA1">Repository</a>
+      <a href="https://github.com/KadNaf/PGA1/issues">Report an issue</a>
+      <a href="mailto:naffiou.kadiri@ird.fr">naffiou.kadiri@ird.fr</a>
+      <a href="mailto:vincent.manzanilla@ird.fr">vincent.manzanilla@ird.fr</a>
+      <a href="mailto:thierry.demeeus@ird.fr">thierry.demeeus@ird.fr</a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
