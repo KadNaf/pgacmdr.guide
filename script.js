@@ -1,4 +1,4 @@
-// Mobile nav toggle only — everything else on this page is static.
+// Mobile nav toggle only; everything else on this page is static.
 (function () {
   var header = document.querySelector(".site-header");
   var toggle = document.querySelector(".nav-toggle");

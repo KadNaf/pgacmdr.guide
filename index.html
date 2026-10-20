@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PGA-cmdr — population genetics, without the tool juggling</title>
+<title>PGA-cmdr, population genetics without the tool juggling</title>
 <meta name="description" content="PGA-cmdr is a free, open-source R/Shiny application for the analysis of codominant molecular marker data: F-statistics, diversity, linkage disequilibrium, null alleles and isolation by distance, all computed locally.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%233C6E58%22/><circle cx=%2210%22 cy=%2211%22 r=%222.6%22 fill=%22%23ECEAE0%22/><circle cx=%2222%22 cy=%2211%22 r=%222.6%22 fill=%22%23ECEAE0%22/><circle cx=%2216%22 cy=%2222%22 r=%222.6%22 fill=%22%23ECEAE0%22/><line x1=%2210%22 y1=%2211%22 x2=%2222%22 y2=%2211%22 stroke=%22%23ECEAE0%22 stroke-width=%221.4%22/><line x1=%2210%22 y1=%2211%22 x2=%2216%22 y2=%2222%22 stroke=%22%23ECEAE0%22 stroke-width=%221.4%22/><line x1=%2222%22 y1=%2211%22 x2=%2216%22 y2=%2222%22 stroke=%22%23ECEAE0%22 stroke-width=%221.4%22/></svg>">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -14,13 +14,16 @@
 <body>
 
 <header class="site-header">
-  <a href="#top" class="wordmark">PGA-cmdr</a>
+  <a href="#top" class="brand">
+    <span class="brand-mark" role="img" aria-label="PGA-cmdr logo"></span>
+    <span class="wordmark">PGA-cmdr</span>
+  </a>
   <nav class="site-nav">
     <a href="#workflow">Modules</a>
     <a href="#methods">Methods</a>
     <a href="#install">Install</a>
     <a href="#cite">Cite</a>
-    <a href="https://github.com/KadNaf/PGA1" class="nav-source">Source</a>
+    <a href="https://github.com/KadNaf/PGA-cmdr" class="nav-source">Source</a>
   </nav>
   <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -33,12 +36,15 @@
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="hero-inner">
       <div class="hero-text">
-        <p class="hero-kicker">R package pgacmdr · in-app name PGA-commander V1</p>
-        <h1>A graphical home for population genetics, with nothing hidden in a script.</h1>
+        <p class="hero-kicker">R package pgacmdr &middot; in-app name PGA-commander V1</p>
+        <div class="hero-heading-row">
+          <span class="hero-mark" aria-hidden="true"></span>
+          <h1>PGA-commander (Version 1) (PGA-cmdr V1): a graphical, user-friendly and multi-OS interface for the analysis of population genetic data</h1>
+        </div>
         <p class="hero-lede">PGA-cmdr brings allele frequencies, F-statistics, genetic diversity, linkage disequilibrium, null-allele correction and isolation by distance into one Shiny interface. Set a few parameters, press Run, get your file back. Every computation happens on your own machine.</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#install">Install PGA-cmdr</a>
-          <a class="btn btn-ghost" href="https://github.com/KadNaf/PGA1">View the source</a>
+          <a class="btn btn-ghost" href="https://github.com/KadNaf/PGA-cmdr">View the source</a>
         </div>
       </div>
       <div class="console" role="group" aria-label="Key facts">
@@ -183,14 +189,14 @@
 
   <section class="install" id="install">
     <div class="install-inner">
-      <h2>Install</h2>
-      <p>PGA-cmdr is a standard R package, installed directly from its source on GitHub.</p>
-      <pre class="terminal"><code>install.packages("remotes")
-remotes::install_github("KadNaf/PGA1")</code></pre>
-      <p>Then start it with one command:</p>
+      <h2>Download &amp; install</h2>
+      <p>PGA-cmdr needs R 4.1.0 or later (r-project.org, Windows / macOS / Linux). The package itself is distributed through <a href="https://kadnaf.r-universe.dev/pgacmdr">R-universe</a>, which builds ready-to-use versions for all three platforms, nothing else to download or compile by hand.</p>
+      <pre class="terminal"><code>install.packages("pgacmdr",
+  repos = c("https://kadnaf.r-universe.dev", "https://cloud.r-project.org"))</code></pre>
+      <p>Then start it with one command, every time you want to use it:</p>
       <pre class="terminal"><code>pgacmdr::run_app()</code></pre>
-      <p class="install-note">macOS only: install <strong>gfortran</strong> (from mac.r-project.org/tools) and <strong>libomp</strong> (<code>brew install libomp</code>) before the step above, since Apple's compiler doesn't ship OpenMP by default. Windows and Linux need no extra step.</p>
-      <p class="install-note">Deploying for a whole lab or a shared server? The repository includes a ready Dockerfile and a docker-compose file, so everyone gets the same environment without installing R themselves.</p>
+      <p class="install-note">To update later, run the same install.packages() command again; there is no need to remove the previous version first.</p>
+      <p class="install-note">The source code lives at <a href="https://github.com/KadNaf/PGA-cmdr">github.com/KadNaf/PGA-cmdr</a>; cloning it by hand is only useful if you want to read or modify it, it isn't part of the normal install.</p>
     </div>
   </section>
 
@@ -198,7 +204,7 @@ remotes::install_github("KadNaf/PGA1")</code></pre>
     <div class="band-inner cite-inner">
       <h2>Citing PGA-cmdr</h2>
       <p>The manuscript describing PGA-cmdr is in preparation and will be deposited on bioRxiv ahead of submission to <em>Peer Community In Mathematical &amp; Computational Biology</em>. Until a formal citation is available, please cite the GitHub repository and the version number you used.</p>
-      <p class="authors">Naffiou Kadiri, Vincent Manzanilla, Marie-Pierre Chapuis, Gora Diop, Thierry de Meeûs — Intertryp &amp; CBGP, Univ Montpellier, CIRAD, IRD, with Université Cheikh Anta Diop, Dakar.</p>
+      <p class="authors">Naffiou Kadiri, Vincent Manzanilla, Marie-Pierre Chapuis, Gora Diop, Thierry de Meeûs, at Intertryp and CBGP, Univ Montpellier, CIRAD, IRD, with Université Cheikh Anta Diop, Dakar.</p>
     </div>
   </section>
 
@@ -207,15 +213,16 @@ remotes::install_github("KadNaf/PGA1")</code></pre>
 <footer class="site-footer">
   <div class="footer-inner">
     <div>
-      <p class="wordmark small">PGA-cmdr</p>
+      <div class="footer-brand">
+        <span class="brand-mark" role="img" aria-label="PGA-cmdr logo"></span>
+        <p class="wordmark small">PGA-cmdr</p>
+      </div>
       <p>Open-source under the MIT license.</p>
     </div>
     <div class="footer-links">
-      <a href="https://github.com/KadNaf/PGA1">Repository</a>
-      <a href="https://github.com/KadNaf/PGA1/issues">Report an issue</a>
+      <a href="https://github.com/KadNaf/PGA-cmdr">Repository</a>
+      <a href="https://github.com/KadNaf/PGA-cmdr/issues">Report an issue</a>
       <a href="mailto:naffiou.kadiri@ird.fr">naffiou.kadiri@ird.fr</a>
-      <a href="mailto:vincent.manzanilla@ird.fr">vincent.manzanilla@ird.fr</a>
-      <a href="mailto:thierry.demeeus@ird.fr">thierry.demeeus@ird.fr</a>
     </div>
   </div>
 </footer>
